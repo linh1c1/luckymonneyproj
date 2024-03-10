@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Money Effect</title>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="overlay d-none"></div>
+    <div class="title">
+        <h2>Chọn một món quà</h2>
+    </div>
+    <div class="container">
+        {% for gift in gifts %}
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="letter">
+                    <div class="text">
+                        <strong>{{ gift['title'] }}</strong>
+                        <div class="text-body">
+                            <p>
+                                {{ gift['content'] }}
+                            </p>
+                            <img src="{{ gift['url'] }}" width="100" height="100" alt="{{ gift['content'] }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="heart"></div>
+        </div>
+        {% endfor %}
+
+        <!-- <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="letter">
+                    <div class="text">
+                        <strong>Dear Person.</strong>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Numquan labore omnis minus maiores laboriosam, fecere in beatae esse.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="heart"></div>
+        </div>
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="letter">
+                    <div class="text">
+                        <strong>Dear Person.</strong>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Numquan labore omnis minus maiores laboriosam, fecere in beatae esse.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="heart"></div>
+        </div>
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="letter">
+                    <div class="text">
+                        <strong>Dear Person.</strong>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Numquan labore omnis minus maiores laboriosam, fecere in beatae esse.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="heart"></div>
+        </div> -->
+    </div>
+
+    <div class="receiver-box d-none">
+        <a class="receiver-gift" href="{{ url_for('receiver_gift_page') }}">Nhận quà</a>
+    </div>
+    
+    <script>
+        const envelopes = document.querySelectorAll('.envelope-wrapper');
+        envelopes.forEach(envelope => {
+            envelope.addEventListener('click', () => {
+                envelope.classList.toggle('flap');
+                envelope.style.zIndex = '100';
+                document.querySelector('.overlay').classList.remove('d-none');
+                document.querySelector('.receiver-box').classList.remove('d-none');
+            });
+        });
+    </script>
+
+
+</body>
+</html>
